@@ -31,10 +31,10 @@ class Feedaty_Badge_IndexController extends Mage_Adminhtml_Controller_Action
 
                             $tmp['Id'] = $bundleproduct->getProductId();
 
-
                             Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                                $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$bundleproduct->getUrlPath()
+                                $tmp['Url'] = Mage::app()->getStore($order->getStoreId())->getUrl($bundleproduct->getUrlPath())
                             );
+
                             if ($fd_oProduct->getImage() != "no_selection")
                                 $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $bundleproduct->getImage() );
                             else
@@ -56,10 +56,12 @@ class Feedaty_Badge_IndexController extends Mage_Adminhtml_Controller_Action
                     } else {
                         $tmp['Id'] = $item->getProductId();
 
-
                         Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                            $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
+                            $tmp['Url'] = Mage::app()->getStore($order->getStoreId())->getUrl($fd_oProduct->getUrlPath())
                         );
+
+
+
                         if ($fd_oProduct->getImage() != "no_selection")
                             $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
                         else

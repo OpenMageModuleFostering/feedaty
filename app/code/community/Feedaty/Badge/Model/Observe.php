@@ -34,10 +34,10 @@ class Feedaty_Badge_Model_Observe
 
                                 $tmp['Id'] = $bundleproduct->getProductId();
 
-
                                 Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                                    $tmp['Url'] = $baseurl_store.$bundleproduct->getUrlPath()
+                                    $tmp['Url'] = Mage::app()->getStore($order->getStoreId())->getUrl($bundleproduct->getUrlPath())
                                 );
+
                                 if ($fd_oProduct->getImage() != "no_selection")
                                     $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $bundleproduct->getImage() );
                                 else
@@ -52,10 +52,10 @@ class Feedaty_Badge_Model_Observe
                         } else {
                             $tmp['Id'] = $item->getProductId();
 
-
                             Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                                $tmp['Url'] = $baseurl_store.$fd_oProduct->getUrlPath()
+                                $tmp['Url'] = Mage::app()->getStore($order->getStoreId())->getUrl($fd_oProduct->getUrlPath())
                             );
+
                             if ($fd_oProduct->getImage() != "no_selection")
                                 $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
                             else
@@ -85,6 +85,7 @@ class Feedaty_Badge_Model_Observe
 
 				$fd_data['merchantCode'] = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
                 $fd_data['orders'][] = $tmp_order;
+
 				// *******************************
 				
 				// *********************************
