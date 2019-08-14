@@ -1,0 +1,215 @@
+<config>
+  <!-- <tabs> -->
+  <!--   <beesocial_config translate="label" module="beesocial"> -->
+  <!--       <label>Beetailer</label> -->
+  <!--       <sort_order>99999</sort_order> -->
+  <!--   </beesocial_config> -->
+  <!-- </tabs>  -->
+	<tabs>
+		<feedaty>
+        	<label>Feedaty</label>
+			<sort_order>195</sort_order>
+		</feedaty>
+	</tabs>
+  <sections>
+    <feedaty_badge_options translate="label" module="badge">
+		<label>Widget preferences</label>
+		<tab>feedaty</tab>
+		<frontend_type>text</frontend_type>
+		<sort_order>1000</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		<groups>
+			<widget_store translate="label source_model">
+			    <label>Widget store</label>
+			    <frontend_type>text</frontend_type>
+			    <sort_order>0</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			    <fields>
+					<enabled>
+					    <label>Enabled</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>adminhtml/system_config_source_yesno</source_model>
+					    <sort_order>1</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</enabled>
+					<badge_style>
+					    <label>Style</label>
+					    <frontend_type>radios</frontend_type>
+					    <source_model>Feedaty_Badge_Model_StyleStore</source_model>
+					    <sort_order>2</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</badge_style>
+					<store_position>
+					    <label>Position</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>Feedaty_Badge_Model_PositionStore</source_model>
+					    <sort_order>4</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</store_position>
+				</fields>                
+			</widget_store>
+			<widget_products translate="label">
+			    <label>Widget products</label>
+			    <frontend_type>text</frontend_type>
+			    <sort_order>2</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			    <fields>
+					<product_enabled>
+					    <label>Enabled</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>adminhtml/system_config_source_yesno</source_model>
+					    <sort_order>1</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</product_enabled>
+					<badge_style>
+					    <label>Style</label>
+					    <frontend_type>radios</frontend_type>
+					    <source_model>Feedaty_Badge_Model_StyleProduct</source_model>
+					    <sort_order>2</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</badge_style>
+					<product_position>
+					    <label>Position</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>Feedaty_Badge_Model_PositionProduct</source_model>
+					    <sort_order>4</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</product_position>
+				</fields>                
+			</widget_products>
+			<review_products translate="label">
+			    <label>Review products</label>
+			    <frontend_type>text</frontend_type>
+			    <sort_order>3</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			    <fields>
+					<product_enabled>
+					    <label>Enabled</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>adminhtml/system_config_source_yesno</source_model>
+					    <sort_order>1</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</product_enabled>
+					<count_review>
+					    <label>Number of reviews</label>
+					    <frontend_type>text</frontend_type>
+					    <sort_order>3</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					    <validate>validate-number</validate>
+					</count_review>
+					<order_review>
+					    <label>Order</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>Feedaty_Badge_Model_Order</source_model>
+					    <sort_order>4</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</order_review>
+					<product_position>
+					    <label>Position</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>Feedaty_Badge_Model_PositionProduct</source_model>
+					    <sort_order>10</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</product_position>
+				</fields>                
+			</review_products>
+		</groups>
+    </feedaty_badge_options>
+    <feedaty_global translate="label" module="badge">
+		<label>Feedaty preferences</label>
+		<tab>feedaty</tab>
+		<frontend_type>text</frontend_type>
+		<sort_order>1000</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		<groups>
+			<feedaty_preferences translate="label">
+			    <label>Feedaty</label>
+			    <frontend_type>text</frontend_type>
+			    <sort_order>2</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			    <fields>
+					<feedaty_code>
+					    <label>Feedaty code</label>
+					    <frontend_type>text</frontend_type>
+					    <sort_order>1</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>0</show_in_website>
+					    <show_in_store>0</show_in_store>
+					    <validate>validate-number</validate>
+					</feedaty_code>
+				</fields>                
+			</feedaty_preferences>
+			<sendorder translate="label source_model">
+			    <label>Order options</label>
+			    <frontend_type>select</frontend_type>
+			    <sort_order>20</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			    <fields>
+					<sendorder>
+					    <label>Status</label>
+					    <frontend_type>select</frontend_type>
+					    <source_model>Feedaty_Badge_Model_OrderStatuses</source_model>
+					    <sort_order>2</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</sendorder>
+				</fields>                
+			</sendorder>
+			<export translate="label source_model">
+			    <label>Initial orders export</label>
+			    <frontend_type>select</frontend_type>
+			    <sort_order>30</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>0</show_in_website>
+			    <show_in_store>0</show_in_store>
+			    <fields>
+					<exportbutton>
+						<label>Export to csv</label>
+          				<frontend_type>button</frontend_type>
+          				<frontend_model>Feedaty_Badge_Block_LinkCsv</frontend_model>
+          				<sort_order>11</sort_order>
+					    <show_in_default>1</show_in_default>
+					    <show_in_website>1</show_in_website>
+					    <show_in_store>1</show_in_store>
+					</exportbutton>
+				</fields>                
+			</export>
+		</groups>
+    </feedaty_global>
+  </sections> 
+</config>

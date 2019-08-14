@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<widgets>
+    <badge_product_reviews type="badge/product_reviews">
+        <name>Feedaty Widget Product</name>
+        <description type="desc">Adds the Feedaty Widget for Products</description>
+    </badge_product_reviews>
+</widgets>

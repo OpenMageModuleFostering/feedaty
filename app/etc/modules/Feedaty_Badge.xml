@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Feedaty_Badge>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Feedaty_Badge>
+    </modules>
+</config>

@@ -1,0 +1,34 @@
+<div class="box-collateral box-reviews" id="customer-reviews">
+	<h2><?php echo $this->__('Customer Reviews') ?></h2>
+	<dl>
+
+<?php $view = $this->getView(); ?>
+		<?php foreach ($view['data_review']['Feedbacks'] as $k=>$r) { ?>
+		<!-- start here -->
+		<dt>
+			<?php //echo $this->__('Review by <span>%s</span>', $this->htmlEscape("ugo")) ?>
+		</dt>
+		<dd>
+			<table class="ratings-table">
+				<col width="1" />
+				<col />
+				<tbody>
+
+					<tr>
+						<th></th>
+                        <td>
+                            <div class="rating-box">
+                                <div class="rating" style="width:<?php echo $r['ProductRating']*20?>%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <?php echo $r['ProductReview']; ?>
+            </dd>
+		<!-- end here -->
+		<?php } ?>
+	</dl>
+	<?php echo $view['link']; ?>
+</div>
