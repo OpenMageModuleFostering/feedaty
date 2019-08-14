@@ -124,7 +124,6 @@ class Feedaty_Badge_Model_WebService {
             $fdata['keyValuePairs'][] = array("Key" => "Position_Merchant", "Value" => Mage::getStoreConfig('feedaty_badge_options/widget_store/store_position'));
             $fdata['keyValuePairs'][] = array("Key" => "Position_Product", "Value" => Mage::getStoreConfig('feedaty_badge_options/widget_products/product_position'));
             $fdata['keyValuePairs'][] = array("Key" => "Status", "Value" => Mage::getStoreConfig('feedaty_global/sendorder/sendorder'));
-print_r($fdata);exit;
             $fdata['merchantCode'] = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
 
             $ch = curl_init();
