@@ -169,7 +169,7 @@
 					    <show_in_store>0</show_in_store>
 					    <validate>validate-number</validate>
 					</feedaty_code>
-				</fields>                
+				</fields>
 			</feedaty_preferences>
 			<sendorder translate="label source_model">
 			    <label>Order options</label>

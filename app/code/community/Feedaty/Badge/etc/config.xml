@@ -6,15 +6,15 @@
         </Feedaty_Badge>
     </modules>
     <admin>
-    	<routers>
-    		<exportcsvfeedaty>
+        <routers>
+            <exportcsvfeedaty>
                 <use>admin</use>
                 <args>
                     <module>Feedaty_Badge</module>
                     <frontName>feedatyexport.csv</frontName>
                 </args>
             </exportcsvfeedaty>
-    	</routers>
+        </routers>
     </admin>
     <global>
         <helpers>
@@ -23,62 +23,62 @@
             </badge>
         </helpers>
         <blocks>
-             <badge>
+            <badge>
                 <class>Feedaty_Badge_Block</class>
-             </badge>
+            </badge>
         </blocks>
         <models>
-          <badge>
-              <class>Feedaty_Badge_Model</class>
-          </badge>
-          <webservice>
-              <class>Feedaty_WebService_Model</class>
-          </webservice>
+            <badge>
+                <class>Feedaty_Badge_Model</class>
+            </badge>
+            <webservice>
+                <class>Feedaty_WebService_Model</class>
+            </webservice>
         </models>
-		<events>
-        	<sales_order_save_after>
-				<observers>
-					<feedaty_badget_observe>
-					<type>singleton</type>
-					<class>badge/observe</class>
-					<method>intercept_order</method>
-					</feedaty_badget_observe>
-				</observers>
-			</sales_order_save_after>
+        <events>
+            <sales_order_save_after>
+                <observers>
+                    <feedaty_badget_observe>
+                        <type>singleton</type>
+                        <class>badge/observe</class>
+                        <method>intercept_order</method>
+                    </feedaty_badget_observe>
+                </observers>
+            </sales_order_save_after>
         </events>
     </global>
     <adminhtml>
-      <acl>
-        <resources>
-          <admin>
-            <children>
-              <system>
-                <children>
-                  <config>
+        <acl>
+            <resources>
+                <admin>
                     <children>
-                      <feedaty_badge_options>
-                          <title>Feedaty Configuration</title>
-                      </feedaty_badge_options>
-                      <feedaty_global>
-                          <title>Feedaty preferences</title>
-                      </feedaty_global>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <feedaty_badge_options>
+                                            <title>Feedaty Configuration</title>
+                                        </feedaty_badge_options>
+                                        <feedaty_global>
+                                            <title>Feedaty preferences</title>
+                                        </feedaty_global>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
                     </children>
-                  </config>
-                </children>
-              </system>
-            </children>
-          </admin>
-        </resources>
-      </acl>
+                </admin>
+            </resources>
+        </acl>
     </adminhtml>
-  <default>
-    <feedaty_global>
-        <feedaty_preferences>
-            <sendorder>complete</sendorder>
-        </feedaty_preferences>
-   </feedaty_global>
-  </default>
-  <frontend>
+    <default>
+        <feedaty_global>
+            <feedaty_preferences>
+                <sendorder>complete</sendorder>
+            </feedaty_preferences>
+        </feedaty_global>
+    </default>
+    <frontend>
         <translate>
             <modules>
                 <translations>
@@ -89,26 +89,26 @@
             </modules>
         </translate>
         <events>
-                       <core_block_abstract_to_html_after>
-                               <observers>
-                                       <product_badge>
-                                               <type>singleton</type>
-                                               <class>badge/generate</class>
-                                               <method>product_badge</method>
-                                       </product_badge>
-                                       <product_reviews>
-                                               <type>singleton</type>
-                                               <class>badge/generate</class>
-                                               <method>product_reviews</method>
-                                       </product_reviews>
-                                       <store_badge>
-                                               <type>singleton</type>
-                                               <class>badge/generate</class>
-                                               <method>store_badge</method>
-                                       </store_badge>
-                               </observers>
-                       </core_block_abstract_to_html_after>
-         </events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <product_badge>
+                        <type>singleton</type>
+                        <class>badge/generate</class>
+                        <method>product_badge</method>
+                    </product_badge>
+                    <product_reviews>
+                        <type>singleton</type>
+                        <class>badge/generate</class>
+                        <method>product_reviews</method>
+                    </product_reviews>
+                    <store_badge>
+                        <type>singleton</type>
+                        <class>badge/generate</class>
+                        <method>store_badge</method>
+                    </store_badge>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
     </frontend>
     <adminhtml>
         <translate>
@@ -121,4 +121,4 @@
             </modules>
         </translate>
     </adminhtml>
-</config> 
+</config>

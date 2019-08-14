@@ -109,7 +109,7 @@ class Feedaty_Badge_Model_WebService {
 
         $cnt = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code')."-".Mage::getStoreConfig('feedaty_badge_options/widget_store/enabled')."-".Mage::getStoreConfig('feedaty_badge_options/widget_products/product_enabled');
 
-        if (1==1 || $content != $cnt) {
+        if ($content != $cnt) {
             $store = Mage::app()->getStore();
 
             $ver = json_decode(json_encode(Mage::getConfig()->getNode()->modules->Feedaty_Badge->version),true);
@@ -141,7 +141,7 @@ class Feedaty_Badge_Model_WebService {
             $content = trim(curl_exec($ch));
             curl_close($ch);
 
-            $cache->save($cnt, "feedaty_notification", array("feedaty_cache"), 31*24*60*60);
+            $cache->save($cnt, "feedaty_notification", array("feedaty_cache"), 10*24*60*60);
         }
     }
 }	
