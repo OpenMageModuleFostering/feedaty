@@ -7,7 +7,7 @@ class Feedaty_Badge_Model_WebService {
 	public function retrive_informations_product($id) {
 		$cache = Mage::app()->getCache();
 		
-		$content = $cache->load("feedaty_product_".$id.(int) FEEDATY_DEBUG);
+		$content = $cache->load("feedaty_product_".$id);
 		
 		if (!$content || strlen($content) == 0) {
 			$feedaty_code = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
@@ -72,7 +72,7 @@ class Feedaty_Badge_Model_WebService {
 		curl_close($ch);
 	}
 
-    public function _get_FeedatyData() {
+    public static function _get_FeedatyData() {
         $cache = Mage::app()->getCache();
 
         $content = $cache->load("feedaty_store");
@@ -81,7 +81,7 @@ class Feedaty_Badge_Model_WebService {
 
         $feedaty_code = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
 
-        $string = "FeedatyData".$feedaty_code.Mage::app()->getLocale()->getLocaleCode().(int) FEEDATY_DEBUG;
+        $string = "FeedatyData".$feedaty_code.Mage::app()->getLocale()->getLocaleCode();
         $content =$cache->load($string);
 
 		if (!$content || strlen($content) == 0) {
@@ -94,7 +94,7 @@ class Feedaty_Badge_Model_WebService {
             $content = trim(curl_exec($ch));
             curl_close($ch);
 
-            $cache->save($content, "FeedatyData".$feedaty_code.Mage::app()->getLocale()->getLocaleCode().(int) FEEDATY_DEBUG, array("feedaty_cache"), 24*60*60); // 24 hours of cache
+            $cache->save($content, "FeedatyData".$feedaty_code.Mage::app()->getLocale()->getLocaleCode(), array("feedaty_cache"), 24*60*60); // 24 hours of cache
         }
 
         $data = json_decode($content,true);
@@ -102,7 +102,7 @@ class Feedaty_Badge_Model_WebService {
         return $data;
     }
 
-    public function send_notification() {
+    public static function send_notification() {
         $cache = Mage::app()->getCache();
 
         $content = $cache->load("feedaty_notification");
