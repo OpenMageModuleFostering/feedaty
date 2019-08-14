@@ -13,10 +13,7 @@ class Feedaty_Badge_Model_WebService {
 			$feedaty_code = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
 			
 			$ch = curl_init();
-            if (FEEDATY_DEBUG)
-                $url = 'http://widget.stage.zoorate.com/go.php?function=feed&action=ws&task=product&merchant_code='.$feedaty_code.'&ProductID='.$id.'&language='.Mage::app()->getLocale()->getLocaleCode();
-            else
-                $url = 'http://widget.zoorate.com/go.php?function=feed&action=ws&task=product&merchant_code='.$feedaty_code.'&ProductID='.$id.'&language='.Mage::app()->getLocale()->getLocaleCode();
+            $url = 'http://widget.zoorate.com/go.php?function=feed&action=ws&task=product&merchant_code='.$feedaty_code.'&ProductID='.$id.'&language='.Mage::app()->getLocale()->getLocaleCode();
 
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -42,10 +39,7 @@ class Feedaty_Badge_Model_WebService {
 			$feedaty_code = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
 			$ch = curl_init();
 			// Recensioni in ordine dalla più recente alla meno
-            if (FEEDATY_DEBUG)
-                $url = 'http://widget.stage.zoorate.com/go.php?function=feed&action=ws&task=merchant&merchant_code='.$feedaty_code;
-            else
-                $url = 'http://widget.zoorate.com/go.php?function=feed&action=ws&task=merchant&merchant_code='.$feedaty_code;
+            $url = 'http://widget.zoorate.com/go.php?function=feed&action=ws&task=merchant&merchant_code='.$feedaty_code;
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_TIMEOUT, '3');
@@ -64,10 +58,8 @@ class Feedaty_Badge_Model_WebService {
 	
 	public function send_order($data) {
 		$ch = curl_init();
-        if (FEEDATY_DEBUG)
-            $url = 'http://stage.zoorate.com/ws/feedatyapi.svc/SubmitOrders';
-        else
-            $url = 'http://www.zoorate.com/ws/feedatyapi.svc/SubmitOrders';
+        $url = 'http://www.zoorate.com/ws/feedatyapi.svc/SubmitOrders';
+
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, '60');
@@ -85,16 +77,17 @@ class Feedaty_Badge_Model_WebService {
 
         $content = $cache->load("feedaty_store");
 
+        Feedaty_Badge_Model_WebService::send_notification();
+
         $feedaty_code = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
 
-        $content =$cache->load("FeedatyData".$feedaty_code.Mage::app()->getLocale()->getLocaleCode().(int) FEEDATY_DEBUG);
+        $string = "FeedatyData".$feedaty_code.Mage::app()->getLocale()->getLocaleCode().(int) FEEDATY_DEBUG;
+        $content =$cache->load($string);
 
 		if (!$content || strlen($content) == 0) {
             $ch = curl_init();
-            if (FEEDATY_DEBUG)
-                $url = 'http://widget.stage.zoorate.com/go.php?function=feed_be&action=widget_list&merchant_code='.$feedaty_code.'&language='.Mage::app()->getLocale()->getLocaleCode();
-            else
-                $url = 'http://widget.zoorate.com/go.php?function=feed_be&action=widget_list&merchant_code='.$feedaty_code.'&language='.Mage::app()->getLocale()->getLocaleCode();
+            $url = 'http://widget.zoorate.com/go.php?function=feed_be&action=widget_list&merchant_code='.$feedaty_code.'&language='.Mage::app()->getLocale()->getLocaleCode();
+
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_TIMEOUT, '60');
@@ -135,10 +128,8 @@ class Feedaty_Badge_Model_WebService {
 
             $ch = curl_init();
 
-            if (FEEDATY_DEBUG)
-                $url = 'http://stage.zoorate.com/ws/feedatyapi.svc/SetKeyValue';
-            else
-                $url = 'http://www.zoorate.com/ws/feedatyapi.svc/SetKeyValue';
+            $url = 'http://www.zoorate.com/ws/feedatyapi.svc/SetKeyValue';
+
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_TIMEOUT, '60');

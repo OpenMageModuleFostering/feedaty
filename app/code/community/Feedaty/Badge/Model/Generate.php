@@ -15,9 +15,9 @@ class Feedaty_Badge_Model_Generate {
                 $product = $product->getId();
                 if (!is_null($product)) {
                     $data = Feedaty_Badge_Model_WebService::_get_FeedatyData();
-
-                    $html = $transport->getHtml();
-                    $transport->setHtml($html.str_replace("__insert_ID__",$product,$data[Mage::getStoreConfig('feedaty_badge_options/widget_products/badge_style')]['html_embed']));
+                    $ver = json_decode(json_encode(Mage::getConfig()->getNode()->modules->Feedaty_Badge->version),true);
+                    $html = '<!-- PlPMa '.$ver[0].' -->'.str_replace("__insert_ID__",$product,$data[Mage::getStoreConfig('feedaty_badge_options/widget_products/badge_style')]['html_embed']).$transport->getHtml();
+                    $transport->setHtml($html);
                 }
             }
         }
@@ -64,7 +64,7 @@ class Feedaty_Badge_Model_Generate {
                 $data = Feedaty_Badge_Model_WebService::_get_FeedatyData();
 
                 $ver = json_decode(json_encode(Mage::getConfig()->getNode()->modules->Feedaty_Badge->version),true);
-                $html = '<!-- P.M. '.$ver[0].' -->'.$data[Mage::getStoreConfig('feedaty_badge_options/widget_store/badge_style')]['html_embed'].$transport->getHtml();
+                $html = '<!-- PlSMa '.$ver[0].' -->'.$data[Mage::getStoreConfig('feedaty_badge_options/widget_store/badge_style')]['html_embed'].$transport->getHtml();
                 $transport->setHtml($html);
 			}
 		}

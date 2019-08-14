@@ -4,7 +4,9 @@ class Feedaty_Badge_Model_Observe
         public function intercept_order(& $observer){
         	
         	$order = $observer->getEvent()->getOrder();
-        	
+
+            $verify = array();
+
         	foreach ($order->getAllStatusHistory() as $orderComment){
         		$verify[$orderComment->getStatus()]++; 
         	}
@@ -18,18 +20,25 @@ class Feedaty_Badge_Model_Observe
 				
 				foreach ($objproducts as $itemId => $item) {
 					unset($tmp);
+                    $fd_oProduct = Mage::getModel('catalog/product')->load((int) $item->getProductId());
+
+                    $tmp['Id'] = $item->getProductId();
+
+
+                    Mage::getModel('core/url_rewrite')->loadByRequestPath(
+                        $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
+                    );
+                    if ($fd_oProduct->getImage() != "no_selection")
+                        $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
+                    else
+                        $tmp['ImageUrl'] = "";
 					//$tmp['sku'] = $item->getSku();
+
 					$tmp['Name'] = $item->getName();
 					$tmp['Brand'] = $item->getBrand();
-					$tmp['Id'] = $item->getProductId();
-					$fd_oProduct = Mage::getModel('catalog/product')->load((int) $tmp['Id']);
-					Mage::getModel('core/url_rewrite')->loadByRequestPath(
-					    $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
-					);
-					if ($fd_oProduct->getImage() != "no_selection")
-						$tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
-					else
-						$tmp['ImageUrl'] = "";
+                    if (is_null($tmp['Brand'])) $tmp['Brand']  = "";
+
+
 					//$tmp['Price'] = $item->getPrice();
 					
 					$fd_products[] = $tmp;
@@ -40,14 +49,13 @@ class Feedaty_Badge_Model_Observe
 				// Formatting the array to be sent
 				$tmp_order['OrderId'] = $order->getId();
 				$tmp_order['OrderDate'] = date("Y-m-d H:i:s");
-				$tmp_order['CustomerEmail'] = $order->getBillingAddress()->getEmail();
-				$tmp_order['CustomerId'] = $order->getBillingAddress()->getEmail();
-				//$order['name'] = $order->getBillingAddress()->getName();
+				$tmp_order['CustomerEmail'] = $order->getCustomerEmail();
+				$tmp_order['CustomerId'] = $order->getCustomerEmail();
 				$tmp_order['Platform'] = "Magento ".MAGE::getVersion();
 				$tmp_order['Products'] = $fd_products;
-				
-				$fd_data['orders'][] = $tmp_order;
+
 				$fd_data['merchantCode'] = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
+                $fd_data['orders'][] = $tmp_order;
 
 				// *******************************
 				
