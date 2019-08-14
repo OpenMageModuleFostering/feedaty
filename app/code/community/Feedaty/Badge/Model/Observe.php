@@ -7,11 +7,14 @@ class Feedaty_Badge_Model_Observe
 
             $verify = array();
 
-        	foreach ($order->getAllStatusHistory() as $orderComment){
+        	foreach ($order->getAllStatusHistory() as $orderComment) {
         		$verify[$orderComment->getStatus()]++; 
         	}
-			
-        	if (($order->getStatus() == Mage::getStoreConfig('feedaty_global/sendorder/sendorder')) && ($verify[Mage::getStoreConfig('feedaty_global/sendorder/sendorder')] <= 1)) {
+
+            if (($order->getStatus() == Mage::getStoreConfig('feedaty_global/sendorder/sendorder')) && ($verify[Mage::getStoreConfig('feedaty_global/sendorder/sendorder')] <= 1)) {
+
+                $baseurl_store = Mage::app()->getStore($order->getStore_id())->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK);
+
 	        	// ********************************
 				// Getting informations about order
 				// and products
@@ -34,7 +37,7 @@ class Feedaty_Badge_Model_Observe
 
 
                                 Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                                    $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$bundleproduct->getUrlPath()
+                                    $tmp['Url'] = $baseurl_store.$bundleproduct->getUrlPath()
                                 );
                                 if ($fd_oProduct->getImage() != "no_selection")
                                     $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $bundleproduct->getImage() );
@@ -52,7 +55,7 @@ class Feedaty_Badge_Model_Observe
 
 
                             Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                                $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
+                                $tmp['Url'] = $baseurl_store.$fd_oProduct->getUrlPath()
                             );
                             if ($fd_oProduct->getImage() != "no_selection")
                                 $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
