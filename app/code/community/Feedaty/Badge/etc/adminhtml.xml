@@ -8,7 +8,7 @@
                         <children>
                             <config>
                                 <children>
-                                    <feedaty translate="title" module="feedaty">
+                                    <feedaty>
                                         <title>Feedaty</title>
                                     </feedaty>
                                 </children>
