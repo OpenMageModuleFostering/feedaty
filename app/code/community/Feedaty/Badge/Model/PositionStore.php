@@ -1,5 +1,5 @@
 <?php
-class Netcomm_Badge_Model_PositionStore
+class Feedaty_Badge_Model_PositionStore
 {
     public function toOptionArray()
     {
