@@ -20,28 +20,30 @@ class Feedaty_Badge_Model_Observe
 				
 				foreach ($objproducts as $itemId => $item) {
 					unset($tmp);
-                    $fd_oProduct = Mage::getModel('catalog/product')->load((int) $item->getProductId());
+                    if (!$item->getParentItem()) {
+                        $fd_oProduct = Mage::getModel('catalog/product')->load((int) $item->getProductId());
 
-                    $tmp['Id'] = $item->getProductId();
-
-
-                    Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                        $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
-                    );
-                    if ($fd_oProduct->getImage() != "no_selection")
-                        $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
-                    else
-                        $tmp['ImageUrl'] = "";
-					//$tmp['sku'] = $item->getSku();
-
-					$tmp['Name'] = $item->getName();
-					$tmp['Brand'] = $item->getBrand();
-                    if (is_null($tmp['Brand'])) $tmp['Brand']  = "";
+                        $tmp['Id'] = $item->getProductId();
 
 
-					//$tmp['Price'] = $item->getPrice();
-					
-					$fd_products[] = $tmp;
+                        Mage::getModel('core/url_rewrite')->loadByRequestPath(
+                            $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
+                        );
+                        if ($fd_oProduct->getImage() != "no_selection")
+                            $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
+                        else
+                            $tmp['ImageUrl'] = "";
+                        //$tmp['sku'] = $item->getSku();
+
+                        $tmp['Name'] = $item->getName();
+                        $tmp['Brand'] = $item->getBrand();
+                        if (is_null($tmp['Brand'])) $tmp['Brand']  = "";
+
+
+                        //$tmp['Price'] = $item->getPrice();
+
+                        $fd_products[] = $tmp;
+                    }
 				}
 				// ********************************
 				
