@@ -12,8 +12,8 @@ class Feedaty_Badge_Model_Generate {
             $plugin_enabled = Mage::getStoreConfig('feedaty_badge_options/widget_products/product_enabled');
             if($plugin_enabled!=0){
                 $product = Mage::registry('current_product');
-                $product = $product->getId();
                 if (!is_null($product)) {
+                    $product = $product->getId();
                     $data = Feedaty_Badge_Model_WebService::_get_FeedatyData();
                     $ver = json_decode(json_encode(Mage::getConfig()->getNode()->modules->Feedaty_Badge->version),true);
                     $html = '<!-- PlPMa '.$ver[0].' -->'.str_replace("__insert_ID__",$product,$data[Mage::getStoreConfig('feedaty_badge_options/widget_products/badge_style')]['html_embed']).$transport->getHtml();

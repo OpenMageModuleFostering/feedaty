@@ -72,23 +72,11 @@
       </acl>
     </adminhtml>
   <default>
-    <badge_options>
-     <general translate="general" module="badge">
-       <color>light</color>
-       <style>padding-top: 20px;</style>
-       <disable_fb_like>0</disable_fb_like>
-       <disable_twitter>0</disable_twitter>
-       <disable_comments>0</disable_comments>
-       <disable_plusone>0</disable_plusone>
-     </general>
-     <fb_comments translate="Facebook comments" module="badge">
-       <width>525</width>
-       <number>10</number>
-     </fb_comments>
-     <twitter translate="Facebook comments" module="badge">
-       <text>Check it out!</text>
-     </twitter>
-   </badge_options>
+    <feedaty_global>
+        <feedaty_preferences>
+            <sendorder>complete</sendorder>
+        </feedaty_preferences>
+   </feedaty_global>
   </default>
   <frontend>
         <translate>
