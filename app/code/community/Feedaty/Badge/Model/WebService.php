@@ -115,7 +115,7 @@ class Feedaty_Badge_Model_WebService {
             $ver = json_decode(json_encode(Mage::getConfig()->getNode()->modules->Feedaty_Badge->version),true);
 
             $fdata['keyValuePairs'][] = array("Key" => "Platform", "Value" => "Magento ".MAGE::getVersion());
-            $fdata['keyValuePairs'][] = array("Key" => "Version", "Value" => $ver[0]);
+            $fdata['keyValuePairs'][] = array("Key" => "Version", "Value" => (string) Mage::getConfig()->getNode()->modules->MyCompany_MyModule->version);
             $fdata['keyValuePairs'][] = array("Key" => "Url", "Value" => Mage::getBaseUrl());
             $fdata['keyValuePairs'][] = array("Key" => "Os", "Value" => PHP_OS);
             $fdata['keyValuePairs'][] = array("Key" => "Php Version", "Value" => phpversion());

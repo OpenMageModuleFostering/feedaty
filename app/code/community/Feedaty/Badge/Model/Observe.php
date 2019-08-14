@@ -23,26 +23,51 @@ class Feedaty_Badge_Model_Observe
                     if (!$item->getParentItem()) {
                         $fd_oProduct = Mage::getModel('catalog/product')->load((int) $item->getProductId());
 
-                        $tmp['Id'] = $item->getProductId();
+                        if ($fd_oProduct->getTypeId() == Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) {
+                            $selectionCollection = $fd_oProduct->getTypeInstance(true)->getSelectionsCollection(
+                                $fd_oProduct->getTypeInstance(true)->getOptionsIds($fd_oProduct), $fd_oProduct
+                            );
+                            foreach($selectionCollection as $option) {
+                                $bundleproduct = Mage::getModel('catalog/product')->load($option->product_id);
+
+                                $tmp['Id'] = $bundleproduct->getProductId();
 
 
-                        Mage::getModel('core/url_rewrite')->loadByRequestPath(
-                            $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
-                        );
-                        if ($fd_oProduct->getImage() != "no_selection")
-                            $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
-                        else
-                            $tmp['ImageUrl'] = "";
-                        //$tmp['sku'] = $item->getSku();
+                                Mage::getModel('core/url_rewrite')->loadByRequestPath(
+                                    $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$bundleproduct->getUrlPath()
+                                );
+                                if ($fd_oProduct->getImage() != "no_selection")
+                                    $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $bundleproduct->getImage() );
+                                else
+                                    $tmp['ImageUrl'] = "";
+                                //$tmp['sku'] = $item->getSku();
 
-                        $tmp['Name'] = $item->getName();
-                        $tmp['Brand'] = $item->getBrand();
-                        if (is_null($tmp['Brand'])) $tmp['Brand']  = "";
+                                $tmp['Name'] = $bundleproduct->getName();
+                                $tmp['Brand'] = $bundleproduct->getBrand();
+                                if (is_null($tmp['Brand'])) $bundleproduct['Brand']  = "";
+                                $fd_products[] = $tmp;
+                            }
+                        } else {
+                            $tmp['Id'] = $item->getProductId();
 
 
-                        //$tmp['Price'] = $item->getPrice();
+                            Mage::getModel('core/url_rewrite')->loadByRequestPath(
+                                $tmp['Url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$fd_oProduct->getUrlPath()
+                            );
+                            if ($fd_oProduct->getImage() != "no_selection")
+                                $tmp['ImageUrl'] = Mage::getModel('catalog/product_media_config')->getMediaUrl( $fd_oProduct->getImage() );
+                            else
+                                $tmp['ImageUrl'] = "";
+                            //$tmp['sku'] = $item->getSku();
 
-                        $fd_products[] = $tmp;
+                            $tmp['Name'] = $item->getName();
+                            $tmp['Brand'] = $item->getBrand();
+                            if (is_null($tmp['Brand'])) $tmp['Brand']  = "";
+
+
+                            //$tmp['Price'] = $item->getPrice();
+                            $fd_products[] = $tmp;
+                        }
                     }
 				}
 				// ********************************
