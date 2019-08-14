@@ -12,7 +12,6 @@ class Feedaty_Badge_Model_Observe
         	}
 
             if (($order->getStatus() == Mage::getStoreConfig('feedaty_global/sendorder/sendorder')) && ($verify[Mage::getStoreConfig('feedaty_global/sendorder/sendorder')] <= 1)) {
-
                 $baseurl_store = Mage::app()->getStore($order->getStore_id())->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK);
 
 	        	// ********************************
@@ -86,7 +85,6 @@ class Feedaty_Badge_Model_Observe
 
 				$fd_data['merchantCode'] = Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code');
                 $fd_data['orders'][] = $tmp_order;
-
 				// *******************************
 				
 				// *********************************

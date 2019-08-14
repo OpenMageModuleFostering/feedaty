@@ -1,5 +1,5 @@
 <?php
-class Feedaty_Badge_Model_PositionStore
+class Netcomm_Badge_Model_PositionStore
 {
     public function toOptionArray()
     {
@@ -14,7 +14,9 @@ class Feedaty_Badge_Model_PositionStore
     		array("value"=>"right.poll","label"=>Mage::helper('core')->__("Position Right poll")),
     		array("value"=>"right","label"=>Mage::helper('core')->__("Position Right")),
 			array("value"=>"left","label"=>Mage::helper('core')->__("Position Left")),
+            array("value"=>"footer","label"=>Mage::helper('core')->__("Position Footer")),
     		array("value"=>"bottom.container","label"=>Mage::helper('core')->__("Position Bottom container")),
+            array("value"=>"footer_links","label"=>Mage::helper('core')->__("Position Footer links"))
     	);
 		
 		return $return;
