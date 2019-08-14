@@ -1,7 +1,7 @@
 <?php
 class Feedaty_Badge_Model_StyleProduct
 {
-    public function toOptionArray()
+    public static function toOptionArray()
     {
 		if (strlen(Mage::getStoreConfig('feedaty_global/feedaty_preferences/feedaty_code')) == 0) return array();
         $data = Feedaty_Badge_Model_WebService::_get_FeedatyData();

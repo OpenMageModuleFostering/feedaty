@@ -1,7 +1,7 @@
 <?php
 class Feedaty_Badge_Model_PositionProduct
 {
-    public function toOptionArray()
+    public static function toOptionArray()
     {
     	$return = array(
     		array("value"=>"content","label"=>Mage::helper('core')->__("After Content")),

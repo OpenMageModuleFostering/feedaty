@@ -1,7 +1,7 @@
 <?php
 class Feedaty_Badge_Model_OrderStatuses
 {
-    public function toOptionArray()
+    public static function toOptionArray()
     {
     	$statuses = Mage::getSingleton('sales/order_config')->getStatuses();
     	

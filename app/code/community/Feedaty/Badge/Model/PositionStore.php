@@ -1,7 +1,7 @@
 <?php
 class Feedaty_Badge_Model_PositionStore
 {
-    public function toOptionArray()
+    public static function toOptionArray()
     {
     	$return = array(
     		array("value"=>"cms_page","label"=>Mage::helper('core')->__("Position Cms page")),
