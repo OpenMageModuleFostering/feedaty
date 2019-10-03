@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/feedaty",
+    "name": "OpenMageModuleFostering\/feedaty",
     "type": "magento-module",
     "license": "GPL",
     "homepage": "",
     "description": "Feedaty Widget",
     "authors": [
-    {
-        "name": "Feedaty",
-        "email": "info@feedaty.com"
-    }
-],
+        {
+            "name": "Feedaty",
+            "email": "info@feedaty.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
